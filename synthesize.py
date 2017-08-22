@@ -6,6 +6,8 @@ import tempfile
 import english_syllable
 
 from melody import melodies
+from xml_building import build_xml_file_content
+
 
 def sing(xml):
     filename = tempfile.mktemp()
@@ -41,14 +43,6 @@ def synthesize(message, melody):
 
     message = message.lower()
 
-    result_lines = [
-        '<?xml version="1.0"?>',
-        '<!DOCTYPE SINGING PUBLIC "-//SINGING//DTD SINGING mark up//EN" ',
-        '"Singing.v0_1.dtd"',
-        '[]>',
-        '<SINGING BPM="%s">' % melody.get_bpm(),
-    ]
-
     def get_first_note():
         first_note = get_first_note.melody[0]
         get_first_note.melody = get_first_note.melody[1:]
@@ -79,8 +73,7 @@ def synthesize(message, melody):
 
     words = [word for word in words if word != '']
 
-    sys.stderr.write('%s\n' % ' '.join(words))
-
+    pitches = []
     for word in words:
         if word in syllabe_number_hotfices:
             num_syllabes = syllabe_number_hotfices[word]
@@ -101,17 +94,10 @@ def synthesize(message, melody):
             notes.append(note)
             beats.append(beat)
 
-        result_lines.append(
-            '<PITCH NOTE="%s"><DURATION BEATS="%s">%s</DURATION></PITCH>' % (
-                ','.join(notes),
-                ','.join([str(x) for x in beats]),
-                word,
-            )
-        )
+        pitches.append((notes, beats, word))
 
-    result_lines.append('</SINGING>')
-
-    sing('\n'.join(result_lines))
+    xml_file_content = build_xml_file_content(melody.get_bpm(), pitches)
+    sing(xml_file_content)
 
 
 if __name__ == '__main__':
