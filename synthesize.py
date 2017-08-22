@@ -11,7 +11,6 @@ def sing(xml):
     with open(filename, 'w') as f:
         f.write(xml)
 
-#    print('(voice_us1_mbrola)')
     print('(tts \"%s\" \'singing)' % filename)
 
 
