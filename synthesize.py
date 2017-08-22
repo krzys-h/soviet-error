@@ -34,7 +34,7 @@ def synthesize(message, melody):
         for unused_i in range(num_syllabes):
             try:
                 note, beat = next(notes_iterator)
-            except IndexError:
+            except StopIteration:
                 raise Exception("End of melody at word: '%s'" % word)
 
             notes.append(note)
