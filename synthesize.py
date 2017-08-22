@@ -48,8 +48,9 @@ def synthesize(message, melody):
 
 
 if __name__ == '__main__':
-    if len(sys.argv) != 3:
-        print("Usage: %s melody text" % sys.argv[0])
+    if len(sys.argv) != 2:
+        print("Usage: %s melody" % sys.argv[0])
+        print("Text is read from stdin")
         sys.exit(0)
 
-    synthesize(sys.argv[2], melodies[sys.argv[1]])
+    synthesize(sys.stdin.read(), melodies[sys.argv[1]])
