@@ -7,11 +7,11 @@ from melody import melodies
 from xml_building import build_xml_file_content
 from syllable_counter import get_number_of_syllables
 
-def sing(xml):
+def print_festival_singing_command(xml_file_content):
     filename = tempfile.mktemp()
 
     with open(filename, 'w') as f:
-        f.write(xml)
+        f.write(xml_file_content)
 
     print('(tts \"%s\" \'singing)' % filename)
 
@@ -68,7 +68,7 @@ def synthesize(message, melody):
         pitches.append((notes, beats, word))
 
     xml_file_content = build_xml_file_content(melody.get_bpm(), pitches)
-    sing(xml_file_content)
+    print_festival_singing_command(xml_file_content)
 
 
 if __name__ == '__main__':
