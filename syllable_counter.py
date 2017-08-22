@@ -1,6 +1,8 @@
 import english_syllable
 
-def load_festival_CMU_dict(path='/usr/share/festival/dicts/cmu/cmudict-0.4.out'):
+
+def load_festival_CMU_dict(
+        path='/usr/share/festival/dicts/cmu/cmudict-0.4.out'):
     cmu_dict = {}
     with open(path) as cmu_dict_file:
         for line in cmu_dict_file:
@@ -26,4 +28,3 @@ def get_number_of_syllables(word):
         num_syllables += 1
 
     return num_syllables
-

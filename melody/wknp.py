@@ -1,5 +1,6 @@
 from base import Melody
 
+
 class WKNPMelody(Melody):
     @staticmethod
     def get_bpm():

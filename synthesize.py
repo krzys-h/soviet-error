@@ -22,7 +22,7 @@ def synthesize(message, melody):
     message = filter_remove_nonletters(message)
 
     words = message.split(' ')
-    
+
     words = [word for word in words if word != '']
 
     notes_iterator = melody.get_notes_iterator()

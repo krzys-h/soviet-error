@@ -1,5 +1,6 @@
 from base import Melody
 
+
 class InternationaleMelody(Melody):
     @staticmethod
     def get_bpm():
@@ -78,4 +79,4 @@ class InternationaleMelody(Melody):
             ('A5', 0.5),
             ('G5', 2.0),
             ('D5', 1.5),
-        ]    
+        ]
