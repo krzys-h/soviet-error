@@ -19,6 +19,6 @@ where melody is:
 
 Example:
 
-`python synthesize.py USSR "An error occured and the world is on fire"  | festival --pipe`
+`echo "An error occured and the world is on fire" | python synthesize.py USSR | festival --pipe`
 
 
