@@ -1,4 +1,6 @@
-class USSRMelody(object):
+from base import Melody
+
+class USSRMelody(Melody):
     @staticmethod
     def get_bpm():
         return 160

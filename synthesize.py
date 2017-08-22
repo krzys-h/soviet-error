@@ -21,13 +21,6 @@ def synthesize(message, melody):
 
     message = message.lower()
 
-    def get_first_note():
-        first_note = get_first_note.melody[0]
-        get_first_note.melody = get_first_note.melody[1:]
-        return first_note
-
-    get_first_note.melody = melody.get_notes()
-
     for digit, digit_text in [
             ('0', 'zero'),
             ('1', 'one'),
@@ -51,6 +44,7 @@ def synthesize(message, melody):
 
     words = [word for word in words if word != '']
 
+    notes_iterator = melody.get_notes_iterator()
     pitches = []
     for word in words:
         num_syllabes = get_number_of_syllables(word)
@@ -58,7 +52,7 @@ def synthesize(message, melody):
         beats = []
         for unused_i in range(num_syllabes):
             try:
-                note, beat = get_first_note()
+                note, beat = next(notes_iterator)
             except IndexError:
                 raise Exception("End of melody at word: '%s'" % word)
 

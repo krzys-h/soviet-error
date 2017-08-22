@@ -1,4 +1,6 @@
-class InternationaleMelody(object):
+from base import Melody
+
+class InternationaleMelody(Melody):
     @staticmethod
     def get_bpm():
         return 100
